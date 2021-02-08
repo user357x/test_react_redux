@@ -72,7 +72,7 @@ const users = (state = getInitialStateUsers(), action) => {
             saveUser(state.list);
             return state;
         case READ:
-            state.currentUser = state.list.filter(user => user.id === action.payload)[0];
+            state.currentUser = Object.assign({}, state.list.filter(user => user.id === action.payload)[0]);
             saveCurrentUser(state.currentUser);
             return state;
         case UPDATE:
