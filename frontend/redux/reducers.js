@@ -36,18 +36,13 @@ const getInitialStateRegime = () => {
 };
 
 const regime = (state = getInitialStateRegime(), action) => {
-
     switch (action.type) {
-
         case SET_REGIME:
             saveRegime(action.payload);
             return action.payload;
-
         default:
             return state
-
     }
-
 };
 
 const getInitialStateUsers = () => {
@@ -61,9 +56,7 @@ const getInitialStateUsers = () => {
 const getId = (list) => list.length ? `${+list[list.length - 1].id + 1}` : '1';
 
 const users = (state = getInitialStateUsers(), action) => {
-
     switch (action.type) {
-
         case CREATE:
             state.list = [
                 ...state.list,
@@ -78,32 +71,25 @@ const users = (state = getInitialStateUsers(), action) => {
             ];
             saveUser(state.list);
             return state;
-
         case READ:
             state.currentUser = state.list.filter(user => user.id === action.payload)[0];
             saveCurrentUser(state.currentUser);
             return state;
-
         case UPDATE:
             state.list = state.list.map(user => user.id === action.payload.id ? Object.assign({}, user, action.payload) : user);
             saveUser(state.list);
             return state;
-
         case DELETE:
             state.list = state.list.filter(user => user.id !== action.payload);
             saveUser(state.list);
             return state;
-
         case REFRESH:
             state.currentUser = Object.assign({}, initialStateCurrentUser);
             saveCurrentUser(state.currentUser);
             return state;
-
         default:
             return state;
-
     }
-
 };
 
 export default combineReducers({
